@@ -8,6 +8,8 @@
 
 
 User.destroy_all
+Grade.destroy_all
+Assignment.destroy_all
 
 97.times do
   User.create!(
@@ -20,17 +22,20 @@ end
 User.create!(
   email: "instructor@test.com",
   password: "test1234",
-  role: "instructor")
+  role: "instructor"
+  )
 
 User.create!(
   email: "student@test.com",
   password: "test1234",
-  role: "student")
+  role: "student"
+  )
 
 User.create!(
   email: "guardian@test.com",
   password: "test1234",
-  role: "guardian")
+  role: "guardian"
+  )
 
 100.times do
   GuardianRelationship.create!(
@@ -42,3 +47,41 @@ User.create!(
     student_id: (26..50).to_a.sample
     )
 end
+
+
+100.times do
+  Assignment.create!(
+    name: Faker::Hacker.adjective,
+    date: Faker::Date.between(2.days.ago, Date.today),
+    instructor_id: (51..100).to_a.sample
+    )
+end
+
+(1..25).to_a.each do |i|
+  Grade.create!(
+    score: rand(0..100.00),
+    date: Faker::Date.between(2.days.ago, Date.today),
+    student_id: i+25,
+    assignment_id: i
+  )
+  Grade.create!(
+    score: rand(0..100.00),
+    date: Faker::Date.between(2.days.ago, Date.today),
+    student_id: i+25,
+    assignment_id: i+24
+  )
+  Grade.create!(
+    score: rand(0..100.00),
+    date: Faker::Date.between(2.days.ago, Date.today),
+    student_id: i+25,
+    assignment_id: i+49
+  )
+  Grade.create!(
+    score: rand(0..100.00),
+    date: Faker::Date.between(2.days.ago, Date.today),
+    student_id: i+25,
+    assignment_id: i+74
+  )
+end
+
+

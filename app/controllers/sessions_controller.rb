@@ -9,9 +9,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in user
       remember user
-      redirect_to user_dashboard_path(user_id: user.id), notice: 'Successful Login'
+      redirect_to user_dashboard_path(user_id: user.id), flash: {notice: 'Successful Login'}
     else
-      redirect_to login_path, notice: 'Invalid email/password combination'
+      redirect_to login_path, flash: {alert: 'Invalid email/password combination'}
     end
   end
 
