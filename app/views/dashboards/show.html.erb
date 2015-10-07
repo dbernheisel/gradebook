@@ -1,6 +1,23 @@
 <p id="notice"><%= notice %></p>
-<p id="alert"><%= alert %></p>
+
 
 <h1>Dashboard</h1>
 <h3>Email: <%= @current_user.email %></h3>
 <h3>Role: <%= @current_user.role %></h3>
+
+<% if @current_user.role == "instructor" %>
+
+
+<% end %>
+
+
+<% if @current_user.role == "guardian" %>
+
+
+<% end %>
+
+
+<% if @current_user.role == "student" %>
+
+
+<% end %>

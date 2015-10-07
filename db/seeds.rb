@@ -66,19 +66,19 @@ end
   )
   Grade.create!(
     score: rand(0..100.00),
-    date: Faker::Date.between(2.days.ago, Date.today),
+    date: Faker::Date.between(10.days.ago, Date.today),
     student_id: i+25,
     assignment_id: i+24
   )
   Grade.create!(
     score: rand(0..100.00),
-    date: Faker::Date.between(2.days.ago, Date.today),
+    date: Faker::Date.between(30.days.ago, Date.today),
     student_id: i+25,
     assignment_id: i+49
   )
   Grade.create!(
     score: rand(0..100.00),
-    date: Faker::Date.between(2.days.ago, Date.today),
+    date: Faker::Date.between(100.days.ago, Date.today),
     student_id: i+25,
     assignment_id: i+74
   )
