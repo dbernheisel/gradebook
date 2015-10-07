@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     if @current_user && @current_user.role == "instructor"
       @users = User.all
     else
-      redirect_to :back, notice: "Not allowed access to this page"
+      redirect_to @current_user, notice: "Not allowed access to the index page"
     end
   end
 
