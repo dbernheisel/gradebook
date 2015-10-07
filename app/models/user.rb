@@ -1,11 +1,5 @@
 class User < ActiveRecord::Base
   attr_accessor :remember_token
-
-  has_many :guardian_relationships, ->(user){ where("guardian_relationships.student_id = :user_id OR guardian_relationships.guardian_id = :user_id", user_id: user.id) }
-  has_many :instructor_relationships, ->(user){ where("instructor_relationships.student_id = :user_id OR instructor_relationships.instructor_id = :user_id", user_id: user.id) }
-  has_many :assignments, foreign_key: "instructor_id"
-  has_many :grades, foreign_key: "student_id"
-
   has_secure_password
 
   validates :email, presence: true,

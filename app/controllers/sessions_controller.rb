@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_filter :require_login
+  skip_before_action :require_login
 
   def new
   end
@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      log_in user
+      session[:user_id] = user.id
       remember user
       redirect_to user_dashboard_path(user_id: user.id), flash: {notice: 'Successful Login'}
     else

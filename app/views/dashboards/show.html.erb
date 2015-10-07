@@ -2,22 +2,16 @@
 
 
 <h1>Dashboard</h1>
-<h3>Email: <%= @current_user.email %></h3>
-<h3>Role: <%= @current_user.role %></h3>
+<p>Email: <%= @current_user.email %></p>
+<p>Role: <%= @current_user.role %></p>
 
-<% if @current_user.role == "instructor" %>
-
-
+<% if @current_user.role == "instructor" ||
+      @current_user.role == "guardian" %>
+  <h1>Students</h1>
+  <%= render 'list_students' %>
 <% end %>
-
-
-<% if @current_user.role == "guardian" %>
-
-
-<% end %>
-
 
 <% if @current_user.role == "student" %>
-
-
+  <h1>Teachers</h1>
+  <%= render 'list_instructors' %>
 <% end %>

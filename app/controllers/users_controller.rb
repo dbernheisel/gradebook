@@ -24,8 +24,15 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
+    @user = nil
     if @current_user && @current_user.role == "instructor"
-      @user = User.new(user_params)
+      if user_params[:role] == "student"
+        @user = Student.new(user_params)
+      elsif user_params[:role] == "instructor"
+        @user = Instructor.new(user_params)
+      elsif user_params[:role] == "guardian"
+        @user = Guardian.new(user_params)
+      end
 
       if @user.save
         redirect_to @user, notice: 'User was successfully created.'
