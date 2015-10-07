@@ -1,0 +1,17 @@
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @instructors.each do |i| %>
+      <tr>
+        <td><%= i.email %></td>
+        <td><%= link_to 'Show', i %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
