@@ -19,9 +19,11 @@ Mockup: https://app.moqups.com/david@bernheisel.com/3t8GtHDw4K/view/page/a23ec33
 ## TODO
 - [x] ERD
 - [x] Sketch
-- [ ] Spike
-- [ ] Scaffold
+- [x] Spike
+- [x] Authentication
+- [x] Scaffold
 - [ ] Tests
-- [ ] Authentication
+- [ ] Refactor student deletion to be Relationship deletion
+
 
 

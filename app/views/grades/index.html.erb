@@ -18,11 +18,13 @@
       <tr>
         <td><%= grade.score %></td>
         <td><%= grade.date %></td>
-        <td><%= grade.student_id %></td>
+        <td><%= @students.find(grade.student_id).fullname %></td>
         <td><%= grade.assignment_id %></td>
         <td><%= link_to 'Show', grade %></td>
-        <td><%= link_to 'Edit', edit_grade_path(grade) %></td>
-        <td><%= link_to 'Destroy', grade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if instructor? %>
+          <td><%= link_to 'Edit', edit_grade_path(grade) %></td>
+          <td><%= link_to 'Destroy', grade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +32,6 @@
 
 <br>
 
-<%= link_to 'New Grade', new_grade_path %>
+<% if instructor? %>
+  <%= link_to 'New Grade', new_grade_path %>
+<% end %>

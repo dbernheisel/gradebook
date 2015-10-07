@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     if @current_user && @current_user.role == "instructor"
       @users = User.all
     else
-      redirect_to @current_user, notice: "Not allowed access to the index page"
+      redirect_to dashboard_path, notice: "Not allowed access to the index page"
     end
   end
 
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
         render :new
       end
     else
-      redirect_to @current_user, notice: "Not allowed access to this page"
+      redirect_to dashboard_path, notice: "Not allowed access to this page"
     end
   end
 
@@ -67,6 +67,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:email, :role, :password_digest)
+      params.require(:user).permit(:email, :role, :password)
     end
 end

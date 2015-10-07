@@ -3,7 +3,12 @@ class GradesController < ApplicationController
 
   # GET /grades
   def index
-    @grades = Grade.all
+    if @current_user && @current_user.role == "instructor"
+      @grades = Grade.all
+    else
+      @grades = @current_user.grades
+    end
+    @students = Student.all
   end
 
   # GET /grades/1

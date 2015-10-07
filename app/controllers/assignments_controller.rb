@@ -3,7 +3,12 @@ class AssignmentsController < ApplicationController
 
   # GET /assignments
   def index
-    @assignments = Assignment.all
+    if @current_user && @current_user.role == "instructor"
+      @assignments = Assignment.all
+    else
+      @assignments = @current_user.assignments
+    end
+    @instructors = Instructor.all
   end
 
   # GET /assignments/1

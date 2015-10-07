@@ -5,13 +5,31 @@
 <p>Email: <%= @current_user.email %></p>
 <p>Role: <%= @current_user.role %></p>
 
-<% if @current_user.role == "instructor" ||
-      @current_user.role == "guardian" %>
+<% if instructor? %>
   <h1>Students</h1>
   <%= render 'list_students' %>
-<% end %>
-
-<% if @current_user.role == "student" %>
+<% elsif student? %>
   <h1>Teachers</h1>
   <%= render 'list_instructors' %>
 <% end %>
+
+<% if instructor? || student? %>
+  <h1>Assignments</h1>
+  <%= render partial: 'list_assignments', locals: {user: @current_user} %>
+<% end %>
+
+<% if instructor? || student? %>
+  <h1>Grades</h1>
+  <%= render partial: 'list_grades', locals: {user: @current_user} %>
+<% end %>
+
+<% if guardian? %>
+  <% @current_user.students.each do |s| %>
+    <h3><%= s.fullname %></h3>
+    <%= render partial: 'list_assignments', locals: {user: s} %>
+    <br/>
+    <%= render partial: 'list_grades', locals: {user: s} %>
+  <% end %>
+<% end %>
+
+

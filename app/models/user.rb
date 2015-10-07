@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   attr_accessor :remember_token
   has_secure_password
 
+  default_scope { order("fullname") }
+
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false },
                     format: {
@@ -9,7 +11,6 @@ class User < ActiveRecord::Base
                       message: "Not a valid email address",
                       on: :create
                     }
-
   validates :password, length: { minimum: 8 }, allow_nil: true
 
   def remember

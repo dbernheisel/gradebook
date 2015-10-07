@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
   resources :grades
   resources :assignments
-  resources :users do
-    get 'dashboard' => 'dashboards#show'
-  end
 
+  resources :users
+  resources :students, controller: 'users'
+  resources :guardians, controller: 'users'
+  resources :instructors, controller: 'users'
+
+  get 'dashboard' => 'dashboards#show'
   root 'sessions#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+
+
 
 
 

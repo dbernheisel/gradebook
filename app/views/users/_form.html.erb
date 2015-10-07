@@ -16,7 +16,7 @@
     <%= f.text_field :email %>
   </div>
 
-  <% if @current_user.role == "instructor" %>
+  <% if instructor? %>
     <div class="field">
       <%= f.label :role %><br>
       <%= f.text_field :role %>
@@ -25,8 +25,8 @@
 
 
   <div class="field">
-    <%= f.label :password_digest %><br>
-    <%= f.text_field :password_digest %>
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
   </div>
   <div class="actions">
     <%= f.submit %>

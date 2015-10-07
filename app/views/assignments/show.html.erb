@@ -15,5 +15,7 @@
   <%= @assignment.instructor_id %>
 </p>
 
-<%= link_to 'Edit', edit_assignment_path(@assignment) %> |
+<% if instructor? %>
+  <%= link_to 'Edit', edit_assignment_path(@assignment) %> |
+<% end %>
 <%= link_to 'Back', assignments_path %>

@@ -1,16 +1,17 @@
 <table>
   <thead>
     <tr>
+      <th>Name</th>
       <th>Email</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @students.each do |s| %>
+    <% @current_user.students.each do |s| %>
       <tr>
+        <td><%= s.fullname %></td>
         <td><%= s.email %></td>
-        <td><%= s.role %></td>
         <td><%= link_to 'Show', s %></td>
         <td><%= link_to 'Edit', edit_user_path(s) if current_user.role == "instructor" %></td>
         <td><%= link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' } %></td>
