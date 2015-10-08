@@ -16,7 +16,7 @@
         <td><%= a.date %></td>
         <% if student? || guardian? %>
           <td>
-            <%= user.grades.where(assignment_id: a.id).score %>
+            <%= user.grades.where(assignment_id: a.id).last.score %>
           </td>
         <% end %>
         <% if instructor? %>
