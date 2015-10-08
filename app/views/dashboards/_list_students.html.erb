@@ -3,18 +3,19 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
-      <th colspan="3"></th>
+      <% if instructor? %><th></th><% end %>
     </tr>
   </thead>
 
   <tbody>
     <% @current_user.students.each do |s| %>
       <tr>
-        <td><%= s.fullname %></td>
+        <td><%= link_to s.fullname, s %></td>
         <td><%= s.email %></td>
-        <td><%= link_to 'Show', s %></td>
-        <td><%= link_to 'Edit', edit_user_path(s) if current_user.role == "instructor" %></td>
-        <td><%= link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if instructor? %><td>
+          <%= link_to 'Edit', edit_user_path(s) %>
+          <%= link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

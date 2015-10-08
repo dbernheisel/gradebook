@@ -3,19 +3,30 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Date</th>
-      <th colspan="3"></th>
+      <th>Assignment Date</th>
+      <th><% if instructor? %>Average <% end %>Grade</th>
+      <% if instructor? %><th>Actions</th><% end %>
     </tr>
   </thead>
 
   <tbody>
     <% user.assignments.each do |a| %>
       <tr>
-        <td><%= a.name %></td>
+        <td><%= link_to a.name, edit_assignment_path(a) %></td>
         <td><%= a.date %></td>
-        <td><%= link_to 'Show', a %></td>
-        <td><%= link_to 'Edit', edit_assignment_path(a) if instructor?(user) %></td>
-        <td><%= link_to 'Destroy', method: :delete, data: { confirm: 'Are you sure?' } if instructor?(user)  %></td>
+        <% if student? || guardian? %>
+          <td>
+            <%= user.grades.where(assignment_id: a.id).score %>
+          </td>
+        <% end %>
+        <% if instructor? %>
+          <td>
+            <%= a.grades.average(:score) %>
+          </td>
+          <td>
+            <%= link_to 'Destroy', method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

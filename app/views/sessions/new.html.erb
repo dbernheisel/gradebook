@@ -1,43 +1,53 @@
-<h1>Log in</h1>
+<div class="flex-boxes">
+  <a class="flex-box flex-box-big">
+    <%= image_tag asset_path('key.png') %>
+    <h1 class="flex-title">Login</h1>
+    <p>You must login to see the gradebook</p>
+    <%= form_for(:session, url: login_path) do |f| %>
+      <p>
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </p>
 
-<%= form_for(:session, url: login_path) do |f| %>
-  <p>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </p>
+      <p>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </p>
 
-  <p>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </p>
-
-  <%= f.submit "Log in" %>
-<% end %>
+      <%= f.submit "Log in" %>
+    <% end %>
+  </a>
 
 
+  <a class="flex-box">
+    <%= image_tag asset_path('qa.png') %>
+    <h1 class="flex-title">QA Logins</h1>
+    <p>Seeded into the development database for testing.</p>
+    <br />
+    <p>
+      <b>Email</b>: student1@test.com<br/>
+      <b>Password</b>: test1234
+    </p>
+    <p>
+      <b>Email</b>: student2@test.com<br/>
+      <b>Password</b>: test1234
+    </p>
+    <p>
+      <b>Email</b>: student3@test.com<br/>
+      <b>Password</b>: test1234
+    </p>
+    <br/>
+    <p>
+      <b>Email</b>: instructor@test.com<br/>
+      <b>Password</b>: test1234
+    </p>
+    <br/>
+    <p>
+      <b>Email</b>: guardian@test.com<br/>
+      <b>Password</b>: test1234
+    </p>
+  </a>
+</div>
 
-<h2>Seeded users</h2>
-<p>
-  <b>Email</b>: student1@test.com<br/>
-  <b>Password</b>: test1234
-</p>
-<p>
-  <b>Email</b>: student2@test.com<br/>
-  <b>Password</b>: test1234
-</p>
-<p>
-  <b>Email</b>: student3@test.com<br/>
-  <b>Password</b>: test1234
-</p>
-
-<p>
-  <b>Email</b>: instructor@test.com<br/>
-  <b>Password</b>: test1234
-</p>
-
-<p>
-  <b>Email</b>: guardian@test.com<br/>
-  <b>Password</b>: test1234
-</p>
 
 

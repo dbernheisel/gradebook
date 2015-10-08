@@ -3,10 +3,10 @@
   <thead>
     <tr>
       <th>Assignment</th>
-      <th>Student</th>
+      <% if instructor?(user) %><th>Student</th><% end %>
       <th>Score</th>
       <th>Date</th>
-      <th colspan="2"></th>
+      <% if instructor?(user) %><th>Actions</th><% end %>
     </tr>
   </thead>
 
@@ -14,11 +14,17 @@
     <% user.grades.each do |g| %>
       <tr>
         <td><%= g.assignment_id %></td>
-        <td><%= g.student_id %></td>
+        <% if instructor?(user) %>
+          <td><%= g.student_id %></td>
+        <% end %>
         <td><%= g.score %></td>
         <td><%= g.date %></td>
-        <td><%= link_to 'Edit', edit_assignment_path(g) if instructor?(user) %></td>
-        <td><%= link_to 'Destroy', method: :delete, data: { confirm: 'Are you sure?' } if instructor?(user)  %></td>
+        <% if instructor?(user) %>
+          <td>
+            <%= link_to 'Edit', edit_assignment_path(g), class: 'edit' %>
+            <%= link_to 'Destroy', method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy'  %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -2,15 +2,13 @@
   <thead>
     <tr>
       <th>Email</th>
-      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @current_user.instructors.each do |i| %>
       <tr>
-        <td><%= i.email %></td>
-        <td><%= link_to 'Show', i %></td>
+        <td><%= link_to i.email, i %></td>
       </tr>
     <% end %>
   </tbody>
