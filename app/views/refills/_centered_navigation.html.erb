@@ -1,0 +1,50 @@
+<header class="centered-navigation texture-normal" role="banner">
+  <div class="centered-navigation-wrapper">
+    <%= link_to login_path, class: "mobile-logo" do %>
+      <img src="<%= asset_path('logo.png') %>" alt="Logo image" />
+    <% end %>
+    <a href="javascript:void(0)" id="js-centered-navigation-mobile-menu" class="centered-navigation-mobile-menu">MENU</a>
+    <nav role="navigation">
+      <ul id="js-centered-navigation-menu" class="centered-navigation-menu show">
+        <li class="nav-link"><%= link_to "About", pages_about_path %></li>
+        <li class="nav-link"><%= link_to "Contact", pages_contact_path %></li>
+        <li class="nav-link logo">
+          <%= link_to login_path, class: "logo" do %>
+            <img src="<%= asset_path('logo.png') %>" alt="Logo image" />
+          <% end %>
+        </li>
+        <% if logged_in? %>
+        <li class="nav-link more"><a href="javascript:void(0)">More</a>
+          <ul class="submenu">
+            <li><a href="javascript:void(0)">Submenu Item</a></li>
+            <li><a href="javascript:void(0)">Another Item</a></li>
+            <li class="more"><a href="javascript:void(0)">Item with submenu</a>
+              <ul class="submenu">
+                <li><a href="javascript:void(0)">Sub-submenu Item</a></li>
+                <li><a href="javascript:void(0)">Another Item</a></li>
+              </ul>
+            </li>
+            <li class="more"><a href="javascript:void(0)">Another submenu</a>
+              <ul class="submenu">
+                <li><a href="javascript:void(0)">Sub-submenu</a></li>
+                <li><a href="javascript:void(0)">An Item</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <% else %>
+        <li class="nav-link more">More ▾</li>
+        <% end %>
+        <li class="nav-link">
+          <% if current_page?(login_path) %>
+            Login
+          <% elsif logged_in? %>
+            <%= link_to "Logout", logout_path, method: :delete %>
+          <% else %>
+            <%= link_to "Login", login_path %>
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

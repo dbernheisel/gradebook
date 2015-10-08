@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'pages/about'
+  get 'pages/contact'
+
   resources :grades
   resources :assignments
 

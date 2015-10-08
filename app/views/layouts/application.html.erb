@@ -7,11 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
-<% if logged_in? %>
-<%= link_to "Log out", logout_path, method: :delete %>
-<% end %>
+  <%= render partial: 'refills/centered_navigation' %>
+  <%= render partial: 'flashes' %>
+  <main>
+    <%= yield %>
+  </main>
 </body>
 </html>
