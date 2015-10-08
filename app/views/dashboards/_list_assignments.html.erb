@@ -12,7 +12,12 @@
   <tbody>
     <% user.assignments.each do |a| %>
       <tr>
-        <td><%= link_to a.name, edit_assignment_path(a) %></td>
+        <% if instructor? %>
+          <td><%= link_to a.name, edit_assignment_path(a) %></td>
+        <% end %>
+        <% if student? || guardian? %>
+          <td><%= link_to a.name, assignment_path(a) %></td>
+        <% end %>
         <td><%= a.date %></td>
         <% if student? || guardian? %>
           <td>
